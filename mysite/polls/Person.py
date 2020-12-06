@@ -1,6 +1,6 @@
 from .db import Database
 
-
+ 
 class Request:
     def __init__(self, label, datetime, timezone, method, url, status_code):
         self.label = label
