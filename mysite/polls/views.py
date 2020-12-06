@@ -2,17 +2,17 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 
-from .Person import Person
+from .Person import Request, create_request
 from .models import Question
 # Create your views here.
 
 def index(request):
     latest_questions = Question.objects.order_by('-pub_date')[:5]
 
-    jay = Person("bolt://localhost:7687", "Jay", 1989)
-    users_in_db = jay.num_users()
+    my_request = Request('req1', '30/Aug/2020:03:24:31', '+0200', 'GET', '/education', '200')
+    request_result = create_request(my_request)
 
-    context = {'latest_questions': latest_questions, 'users_in_db': users_in_db}
+    context = {'latest_questions': latest_questions, 'request_result': request_result}
     return render(request, 'polls/index.html', context)
 
 def detail(request, question_id):
