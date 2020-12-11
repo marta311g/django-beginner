@@ -182,22 +182,14 @@ def get_nodes(class_name, attributes):
 
     db = Database("bolt://localhost:7687", "neo4j", "password")
     return db.query(query_string)
-
-
+#example
+#mydict = {
+#    "datetime": "30/Aug/2020:03:24:31",
+#        "method": "GET"
+#}
+#print(get_nodes('Request', mydict))
 
 def get_requests_for_ip(ip_address):
     query_string = 'MATCH(a:Ip {address: "' + ip_address + '"})-[:HAS_SENT]->(b:Request) RETURN b'
     db = Database("bolt://localhost:7687", "neo4j", "password")
     return db.query(query_string)
-
-mydict1 = {
-    "name": "zagreb",
-    "postal_code": "10000"
-}
-mydict2 = {
-    "address": "123:123:123:123",
-    "ip_type": "ipv4"
-}
-par = Parameter("id", "3")
-print("geting nooooooooooooooooooodes")
-print(create_node(par.get_node_name(), par.create_dictionary()))
